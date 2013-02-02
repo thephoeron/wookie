@@ -8,7 +8,6 @@ Listeners
 A listener is an object that describes to Wookie where/how it should listen for
 incoming requests.
 
-- [Example](#example)
 - [listener](#listener) _class_
   - [listener-bind](#listener-bind) _accessor_
   - [listener-port](#listener-port) _accessor_
@@ -18,25 +17,6 @@ incoming requests.
   - [listener-key](#listener-key) _accessor_
   - [listener-password](#listener-password) _accessor_
 - [start-server](#start-server) _method_
-
-<a id="example"></a>
-Example
--------
-Here's a simple example of how to use listeners. Keep in mind that for Wookie
-to work, it needs to be started from inside a [cl-async](/cl-async) event loop:
-
-{% highlight cl %}
-;; create a listener that accepts connections on port 80
-(let ((listener (make-instance 'listener
-                               :bind nil  ; equivalent to "0.0.0.0"
-                               :port 80)))
-  ;; start an event loop and pass our listener to Wookie's start-server method
-  (as:start-event-loop
-    (lambda () (start-server listener))
-    ;; it's generally a good idea to catch errors here (otherwise they bubble
-    ;; up to the REPL and Wookie won't have a chance to handle them)
-    :catch-app-errors t))
-{% endhighlight %}
 
 <a id="listener"></a>
 ### listener (class)
