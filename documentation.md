@@ -18,4 +18,23 @@ Wookie's documentation is split into several parts:
 <a id="quick-start"></a>
 Quick start
 -----------
-add some examples here...
+Here are some quick examples to get you started using Wookie. Remember that
+Wookie runs on top of a [cl-async](/cl-async) event loop, so you must start
+Wookie from within an event loop for it to work.
+
+### Starting Wookie
+Here's how to use a [listener](/wookie/listeners#listener) to start Wookie
+using the address/port you want to bind to:
+
+{% highlight cl %}
+;; create a listener that accepts connections on port 80
+(let ((listener (make-instance 'listener
+                               :bind nil  ; equivalent to "0.0.0.0"
+                               :port 80)))
+  ;; start an event loop and pass our listener to Wookie's start-server method
+  (as:start-event-loop
+    (lambda () (start-server listener))
+    ;; it's generally a good idea to catch errors here (otherwise they bubble
+    ;; up to the REPL and Wookie won't have a chance to handle them)
+    :catch-app-errors t))
+{% endhighlight %}
