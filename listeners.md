@@ -8,7 +8,7 @@ Listeners
 A listener is an object that describes to Wookie where/how it should listen for
 incoming requests.
 
-- [Examples](#examples)
+- [Example](#example)
 - [listener](#listener) _class_
   - [listener-bind](#listener-bind) _accessor_
   - [listener-port](#listener-port) _accessor_
@@ -19,7 +19,7 @@ incoming requests.
   - [listener-password](#listener-password) _accessor_
 - [start-server](#start-server) _method_
 
-<a id="examples"></a>
+<a id="example"></a>
 Example
 -------
 Here's a simple example of how to use listeners. Keep in mind that for Wookie
