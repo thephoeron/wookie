@@ -43,6 +43,7 @@ Accessor for the listener's `backlog` value.
 <a id="ssl-listener"></a>
 ### ssl-listener (class)
 _extends [listener](#listener)_
+
 The `ssl-listener` class extends the [listener](#listener) class and tells
 Wookie to listen over SSL using the given certificate/key (and optional key
 password). It uses [cl-async's SSL](/cl-async/tcp-ssl). Loading of SSL can be
