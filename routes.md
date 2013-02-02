@@ -143,7 +143,7 @@ specific `Accept` header).
 ### route-error (condition)
 A condition that describes a general error with the routing system.
 
-<a id="route-note-found"></a>
+<a id="route-not-found"></a>
 ### route-not-found (condition)
 _extends [route-error](#route-error)_
 
