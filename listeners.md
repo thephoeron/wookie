@@ -66,8 +66,8 @@ file is password-encrypted).
 <a id="start-server"></a>
 ### start-server (method)
 {% highlight cl %}
-(defgeneric start-server (listener)) =>
-  tcp-server
+(defgeneric start-server (listener))
+  => tcp-server
 {% endhighlight %}
 
 This method takes a listener and uses it to create a [cl-async tcp-server](/cl-async/tcp#tcp-server)
