@@ -54,9 +54,10 @@ to stream content over HTTP.
 route with the same method/resource in the routing table.
 
 `bind-request` and `bind-response` are the variables we want to be available to
-the route body that hold our respective `request` and `response` objects for the
-incoming request. If `bind-args` is passed, it will be a list that holds all the
-matched groups from the `resource` regex.
+the route body that hold our respective [request](/wookie/request-handling#request)
+and [response](/wookie/request-handling#response) objects for the incoming
+request. If `bind-args` is passed, it will be a list that holds all the matched
+groups from the `resource` regex.
 
 Let's dive in with a few examples:
 
@@ -68,13 +69,13 @@ Let's dive in with a few examples:
 ;; Grab an album by its numeric ID
 (defroute (:get "/albums/([0-9]+)") (req res args)
   ;; our album id is in `args`
-  (let ((album (get-album-by-id (car args))))
+  (let ((album (my-app:get-album-by-id (car args))))
     (if album
         (progn
           ;; set the Content-Type for the response
           (setf (getf (response-headers res) :content-type) "application/vnd.myapp.album+json")
           ;; send back JSON for the album we found
-          (send-response res :body (yason:encode (my-app:get-album-by-id album-id))))
+          (send-response res :body (yason:encode album)))
         ;; NOPE
         (send-response res :status 404 :body "That album wasn't found =["))))
 
