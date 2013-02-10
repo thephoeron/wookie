@@ -22,6 +22,7 @@ system should use the next matching route (known as "route jumping," done via
 the [next-route](#next-route) function).
 
 - [defroute](#defroute) _macro_
+- [with-vhost](#with-vhost) _macro_
 - [clear-route](#clear-route) _function_
 - [clear-routes](#clear-routes) _function_
 - [next-route](#next-route) _function_
@@ -32,7 +33,8 @@ the [next-route](#next-route) function).
 ### defroute (macro)
 {% highlight cl %}
 (defmacro defroute ((method resource &key (regex t) (case-sensitive t)
-                                          chunk replace)
+                                          chunk replace
+                                          vhost)
                     (bind-request bind-response &optional bind-args)
                     &body body))
 {% endhighlight %}
@@ -52,6 +54,11 @@ to stream content over HTTP.
 
 `:replace` tells the routing system that this route should replace the first 
 route with the same method/resource in the routing table.
+
+The `:vhost` keyword specifies that this route should only load for a specific
+`Host: ...` header. This is a string in the format "host.com" or
+"host.com:8080". If a port is not specified, the route will match on *any* port
+provided the host matches.
 
 `bind-request` and `bind-response` are the variables we want to be available to
 the route body that hold our respective [request](/wookie/request-handling#request)
@@ -86,6 +93,31 @@ Let's dive in with a few examples:
     (when finishedp
       (my-app:finish-file)
       (send-response res :body "Thanks for the file."))))
+{% endhighlight %}
+
+<a id="with-vhost"></a>
+### with-vhost (macro)
+{% highlight cl %}
+(defmacro with-vhost (host &body body))
+{% endhighlight %}
+
+All routes defined via [defroute](#defroute) in the `body` of this macro will
+use the virtual host specified in `host` (unless you explicitely set a host via
+defroute's `:vhost` keyword).
+
+{% highlight cl %}
+;; set up routes for different hostnames
+(with-vhost "filibuster.com"
+  (defroute (:get "/") (req res)
+    (send-response res :body "welcome to the filibuster homepage where the text never ends and the fun never stops...in fact, i'd like to tell you a story abou..."))
+  (defroute (:get ".+") (req res)
+    (send-response res :body "filibuster (page not found)" :status 404)))
+
+(with-vhost "sarcastic-ass.com"
+  (defroute (:get "/") (req res)
+    (send-response res :body "wow, SUPER glad you're on my site..."))
+  (defroute (:get ".+") (req res)
+    (send-response res :body "you hit the error page. you must be REALLY smart.")))
 {% endhighlight %}
 
 <a id="clear-route"></a>
