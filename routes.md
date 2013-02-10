@@ -5,8 +5,8 @@ layout: documentation
 
 Routes
 ======
-This section explains how to get Wookie to run different sections of your code
-depending on what's being requested.
+Routes allow you to map a URL to a block of code to be run when that URL is
+requested.
 
 The Wookie routing system uses regular expression routing (the default) or exact
 match string routing. Wookie routes on the HTTP method of the request (`GET`,
