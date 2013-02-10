@@ -18,10 +18,10 @@ Wookie's documentation is split into several parts:
 - [Error handling](/wookie/error-handling)<br>
   This sections covers handling errors generated while running Wookie, as well
   as errors that your application generates while processing.
-- [Plugins (loading plugins)](/wookie/plugins)<br>
+- [Plugins](/wookie/plugins)<br>
   Wookie provides much functionality (even what some consider core features) in
   the form of plugins.
-- [Plugins (writing plugins)](/wookie/writing-plugins)<br>
+- [Writing plugins](/wookie/writing-plugins)<br>
   Learn how to write your own plugins for Wookie to extend the functionality to
   your liking.
 
