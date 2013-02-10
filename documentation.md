@@ -15,8 +15,15 @@ Wookie's documentation is split into several parts:
 - [Request handling](/wookie/request-handling)<br>
   Describes how to pull data out of requests (such as GET/POST parameters, form
   (and file) data, Cookies, etc).
-- [Plugins/Hooks](/wookie/plugins)<br>
-  Plugins are a way to extend Wookie's functionality
+- [Error handling](/wookie/error-handling)<br>
+  This sections covers handling errors generated while running Wookie, as well
+  as errors that your application generates while processing.
+- [Plugins (loading plugins)](/wookie/plugins)<br>
+  Wookie provides much functionality (even what some consider core features) in
+  the form of plugins.
+- [Plugins (writing plugins)](/wookie/writing-plugins)<br>
+  Learn how to write your own plugins for Wookie to extend the functionality to
+  your liking.
 
 <a id="quick-start"></a>
 Quick start
