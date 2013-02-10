@@ -75,7 +75,7 @@ Let's dive in with a few examples:
 
 ;; Grab an album by its numeric ID
 (defroute (:get "/albums/([0-9]+)") (req res args)
-  ;; our album id is in `args`
+  ;; our album id is the first value in `args`
   (let ((album (my-app:get-album-by-id (car args))))
     (if album
         (progn
